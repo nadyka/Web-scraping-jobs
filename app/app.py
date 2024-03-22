@@ -3,6 +3,7 @@ import json, os
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from sqlalchemy import desc
 
 
@@ -12,6 +13,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db) # Initialize Flask-Migrate here
 
 
 class Job(db.Model):
@@ -207,7 +209,7 @@ def delete():
 @app.route("/sort", methods=["POST"])
 def sort():
     sorting_values = get_sorting_values()
-    print(f"\nsorting_values: '{sorting_valuSes}'\n")
+    print(f"\nsorting_values: '{sorting_values}'\n")
     jobs = Job.query.all()
     for job in jobs:
         job.job_ranking = sorting_values
@@ -222,6 +224,7 @@ def sort():
 
 if __name__ == "__main__":
     db.create_all()
+    migrate.init_app(app, db)
     app.run(debug=True)
 
 

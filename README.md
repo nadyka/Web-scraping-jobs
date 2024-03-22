@@ -1,5 +1,8 @@
-# Web-scraping-jobs
+# Web-scraping-jobs Flask Application
 Implementation of jobs recommendation algorithm by web scraping
+
+ORIGINAL SOURCE: https://github.com/lbrejon/Web-scraping-jobs
+Updated On: 2024.03.22 
 
 https://user-images.githubusercontent.com/56866008/136713739-fb332ca9-5151-4481-b373-3531a43a8dae.mp4
 
@@ -40,6 +43,8 @@ Librairies:
 - bs4 (BeautifulSoup)
 - flask
 - sqlalchemy
+# Make sure to install Flask-Migrate
+- Flask-Migrate
 ```
 
 ## Project composition 📂
@@ -194,7 +199,7 @@ $ mkdir myproject
 $ cd myproject
 $ python3 -m venv flask
 ```
-Activate it (virtual environment's name is flask)
+Activate it (the virtual environment name is 'flask')
 ```
 $ source flask/bin/activate
 ```
@@ -206,6 +211,13 @@ Set environment variables in terminal (in order to not rerun code after modifica
 ```
 $ export FLASK_APP=app.py
 $ export FLASK_ENV=development
+
+```
+Migrate the Flask database based on the SQLAlchemy database model defined in app.py.
+```
+flask db init # Initialize the migration repository
+flask db migrate # Generate a migration script
+flask db upgrade # Apply the migration to the database
 ```
 Run the app
 ```
