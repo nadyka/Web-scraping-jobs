@@ -93,17 +93,17 @@ Librairies:
 ```
 
 ## Description 📋 
-This project aims to **find best job offers for you by web scrapping**. As a reminder, **web scraping is the process of gathering information from the Internet, most of the time automatically**. Just to make sure you understand the the scope of this process, scraping a page respectfully for educational purposes is not a problem since the information is publically available. User job request is sent (GET/POST) and saved as json file ```data/jobs_parameters_user_request.json```, then the ```notebooks/scraping_jobs.py``` taking in argument this json file, scrapes both websites (Indeed/LinkedIn). After data processing, user can either visualize results throught csv file ```data/jobs.csv``` or throught the wep app. The latter offer to the user to rank job offers by rating, alphabetical criteria.
+This project aims to **find the "best" job offers for you by web scrapping**. As a reminder, **web scraping is the process of gathering information from the Internet, most of the time automatically**.  Just to make sure you understand the scope of this process, scraping a page respectfully for educational purposes is not a problem since the information is publicly available.  A user job request is sent (GET/POST) and saved as json file ```data/jobs_parameters_user_request.json```, then the ```notebooks/scraping_jobs.py``` taking in argument this json file, scrapes both websites (Indeed/LinkedIn).  After data processing, users can either visualize results through csv file ```data/jobs.csv``` or through the web app. The latter offer to the user to rank job offers by rating, alphabetical criteria.
 
-- I choosen to use **BeautifulSoup** librairy because it's an easy one for beginners (for other librairies, see Selenium, lxml, Scrapy..). BeautifulSoup is a Python library for parsing structured data (```soup = BeautifulSoup(page.content, "html.parser")```). It allows you to interact with HTML in a similar way to how you interact with a web page using developer tools. Indeed, an HTML web page is structured by **tags** making elements search simple: 
+- I choose to use **BeautifulSoup** library because it's an easy one for beginners (for other libraries, see Selenium, lxml, Scrapy..). BeautifulSoup is a Python library for parsing structured data (```soup = BeautifulSoup(page.content, "html.parser")```). It allows you to interact with HTML in a similar way to how you interact with a web page using developer tools.  Indeed, an HTML web page is structured by **tags** making element search simple: 
     - find elements by class name: ```element1 = soup.find_all("<tag>", class_="<class>")```
     - find elements by id: ```element2 = soup.find_all("<tag>", id_="<id>")```
     - find elements by text content: ```element3 = soup.find_all("<tag>", string="<string>")```
 
-- **Scrapping** and **parsing data process** enables to gather information about job offers: 'Title', 'Company', 'Company_type', 'Company_sector', 'Country', 'City', 'Summary, 'Date', 'Job_id' and 'Job_url'. The job recommendation algorithm can process **several websites**, **countries**, **cities** and **pages**.\
+- **Scraping** and **parsing data process** enables to gather information about job offers: 'Title', 'Company', 'Company_type', 'Company_sector', 'Country', 'City', 'Summary, 'Date', 'Job_id' and 'Job_url'. The job recommendation algorithm can process **several websites**, **countries**, **cities** and **pages**.\
 For *LinkedIn* website, the parameter geoId was required to scrap data. Information about geoId came from this *[website](https://help4access.com/no-more-secrets/)* and raw data was saved into ```data/raw/geoId.csv```, then cleaned and saved data in ```data/processed/geoId.csv```.
 
-- The **jobs recommendation algorithm** takes in argument a dictionary with information about the user request: **jobs_parameters**. The fieds **Query** and **City** are mandatory to search jobs. By default:
+- The **jobs recommendation algorithm** takes in argument a dictionary with information about the user request: **jobs_parameters**. The fields **Query** and **City** are mandatory to search jobs. By default:
     - Website: Indeed
     - Distance from the city: 0
     - Required keywords (in title): None
@@ -215,9 +215,9 @@ $ export FLASK_ENV=development
 ```
 Migrate the Flask database based on the SQLAlchemy database model defined in app.py.
 ```
-flask db init # Initialize the migration repository
-flask db migrate # Generate a migration script
-flask db upgrade # Apply the migration to the database
+flask db init      # Initialize the migration repository
+flask db migrate   # Generate a migration script
+flask db upgrade   # Apply the migration to the database
 ```
 Run the app
 ```
