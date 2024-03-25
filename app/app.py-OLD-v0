@@ -2,15 +2,12 @@ import os
 import json
 import subprocess
 import datetime
-import logging
+#import requests
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import desc
-
-# Configure logging
-log_filename = f"run_log_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
-logging.basicConfig(filename=log_filename, level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(message)s')
 
 app = Flask(__name__)
 
@@ -136,18 +133,12 @@ def get_all_information_about_jobs_request():
 
 @app.route("/")
 def home():
-    logging.info('Starting home function')
     heads = ["ID", "JOB RATING", "WEBSITE", "TITLE", "COMPANY", "COMPANY TYPE", "COMPANY SECTOR", "COUNTRY", "CITY", "JOB SUMMARY", "DATE", "JOB URL"]
     jobs = Job.query.all()
-    
     print("\n\nJOBS IN TABLE:'{}'\n\n".format(jobs))
-    for job in jobs:
-        db.session.delete(job)
-        db.session.commit()
-    return render_template("base.html", jobs=jobs, heads=heads)
-
-    logging.info('Finished querying jobs')
-    logging.info('Finished home function')
+    # for job in jobs:
+    #     db.session.delete(job)
+    #     db.session.commit()
     return render_template("base.html", jobs=jobs, heads=heads)
 
 
@@ -162,37 +153,29 @@ def add():
     Returns:
         A redirect to the home page.
     """
-
-    logging.info('Starting add function')
-
     # Remove existing job data from the database
     jobs = Job.query.all()
-    
     for job in jobs:
-        logging.info(f"Deleting job '{job.id}'")
-        print(f"Job '{job.id}' deleted")        # for debugging, print message to console.
+        print(f"Job '{job.id}' deleted")
         db.session.delete(job)
         db.session.commit()
-    logging.info('Finished deleting jobs')
 
     # Retrieve user request
     dic_info = get_all_information_about_jobs_request()
-    print('\nJobs parameters user request sent', dic_info,'\n')      # for debugging, print message to console.
-    logging.info('Finished retrieving user request')
-    
+    print('\nJobs parameters user request sent', dic_info,'\n')
+
     # Check if the file exists, and create it if not
-    json_test = os.path.join('..', '..', 'data', 'jobs_parameters_user_request.json')
-    json_test = os.path.abspath(json_test)
+    json_test = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'jobs_parameters_user_request.json'))
     print(f" json_test: '{json_test}' file is located at: '{os.path.abspath(json_test)}'")
     if not os.path.exists(json_test):
         with open(json_test, "w") as outfile:
             outfile.write('{}') # Write an empty JSON object
-    logging.info('Finished checking and creating JSON file')
 
     # Now you can write to the file
     with open(json_test, "w") as outfile:
         json.dump(dic_info, outfile, indent=4, separators=(', ', ': '))
-    logging.info('Finished writing to JSON file')
+
+    # ...
 
     # # Create and update a JSON file with user request data
     # json_test = "../../data/jobs_parameters_user_request.json"
@@ -202,15 +185,13 @@ def add():
     # Run a Python script for scraping jobs
     # TODO: not sure why this script is located in the "notebooks" folder.  Should be in "scripts" or "src" folder.
     subprocess.call("../../notebooks/scraping_jobs.py", shell=True)
-    logging.info('Finished running scraping script')
 
     # Load and display data from a JSON file on the user interface
     json_filename = "../../data/jobs.json"
     with open(json_filename, "r") as json_file:
         data = json.load(json_file)
-    logging.info('Finished loading data from JSON file')
-
-    print("\n",data[0],"\n")  # for debugging, print message to console. Remove for production
+    
+    print("\n",data[0],"\n")
     for i in range(len(data)):
         job = data[i]
         new_job = Job(job_ranking="id",
@@ -231,8 +212,6 @@ def add():
         db.session.add(new_job)
         db.session.commit()
 
-    logging.info('Finished adding new jobs to database')
-    logging.info('returning from add function')    
     return redirect(url_for("home"))
 
 

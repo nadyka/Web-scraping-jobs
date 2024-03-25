@@ -1,0 +1,14 @@
+# Ignore log files
+*.log
+
+# Ignore data files
+*.data
+
+# Ignore secrets
+secrets.json
+
+# Ignore the specific file
+#data/jobs_parameters_user_request.json
+
+# Ignore all files in a directory
+#data/

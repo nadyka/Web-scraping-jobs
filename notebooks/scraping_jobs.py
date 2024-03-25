@@ -1,11 +1,11 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-import pandas as pd 
 import os
- 
+import datetime
 import json, csv
-
+import pandas as pd 
+import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
@@ -831,7 +831,7 @@ def scrape_jobs(jobs_parameters):
     Args:
         jobs_parameters: Dictionay, contains information about user request
     Returns:
-        df_jobs: Dataframe, contains information about scrapped jobs
+        df_jobs: Dataframe, contains information about scraped jobs
     """
     website_nb = 0
     

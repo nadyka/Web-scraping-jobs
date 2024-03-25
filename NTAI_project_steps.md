@@ -5,7 +5,21 @@
 
 TODO: add other people from the AI-powered training group. 
 
+TODO: Fix error: when pressing 
+    route: http://127.0.0.1:5000/add shows error on page: 
+    Internal Server Error
+    The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
 
+TODO: Do not delete jobs from the jobs table before every run.  
+TODO: Verify if a job has already been added to the jobs table and keep it. Only add new jobs, do not delete existing ones. 
+
+TODO: add logging to scraping_jobs.py and app.py
+#### {Phind Prompt} It looks like data are not being retrieved by the scraper, because the db.sqlite database is empty, and the jobs.csv file and other files are not being created.  We need to add Python logging, or turn on Flask logging if it is already available (please advise).  The entire application (app.py, scraping_jobs.py, etc) must log to a file named "run_log_{datetime}.log" so that we can check all operations as they happen, and persist them for each run.  Please add complete logging statements to the app.py file and the scraping_jobs.py file.  Please add complete logging statements for every CRUD operation, e.g., where any data files or objects are created, read, updated, or deleted, and every other operation.  We need to be able to analyze the run_log to see what actually happens when the program runs.  
+
+TODO: {Phind Prompt}: 
+#### Please try again, but this time read the docstrings or in-line comments of each function or CRUD operation and then provide appropriate entry and exit logging statements with targeted logging message for each specific function or data object CRUD operation.  DO THIS FOR THE ENTIRE FILE, NOT JUST THE SCRAPING FUNCTIONS.  Please rewrite the complete file, and do not just show examples.  I want a complete file that I can test immediately.  
+
+TODO: The file requests headers file "data\jobs_parameters_user_request.json" is not being created properly on line 187 of app.py.  
 
 ## Using git and Github for Collaboration and Source Control:
 - 1. Create a new repository on GitHub by forking the original repository.
