@@ -32,7 +32,7 @@ Estimated reading time : ⏱️ 5min
 ## Technologies 🖥️
 Programming languages:
 ```bash
-- Python (framework PyTorch)
+- Python 
 ```
 
 Librairies:
@@ -43,8 +43,9 @@ Librairies:
 - bs4 (BeautifulSoup)
 - flask
 - sqlalchemy
-# Make sure to install Flask-Migrate
+# Make sure to install Flask-Migrate (this is required to run Flask in 2024)
 - Flask-Migrate
+- [for the future the PyTorch package can be used for machine learing to help improve analysis or other aspects of this program.]
 ```
 
 ## Project composition 📂
@@ -95,7 +96,7 @@ Librairies:
 ## Description 📋 
 This project aims to **find the "best" job offers for you by web scrapping**. As a reminder, **web scraping is the process of gathering information from the Internet, most of the time automatically**.  Just to make sure you understand the scope of this process, scraping a page respectfully for educational purposes is not a problem since the information is publicly available.  A user job request is sent (GET/POST) and saved as json file ```data/jobs_parameters_user_request.json```, then the ```notebooks/scraping_jobs.py``` taking in argument this json file, scrapes both websites (Indeed/LinkedIn).  After data processing, users can either visualize results through csv file ```data/jobs.csv``` or through the web app. The latter offer to the user to rank job offers by rating, alphabetical criteria.
 
-- I choose to use **BeautifulSoup** library because it's an easy one for beginners (for other libraries, see Selenium, lxml, Scrapy..). BeautifulSoup is a Python library for parsing structured data (```soup = BeautifulSoup(page.content, "html.parser")```). It allows you to interact with HTML in a similar way to how you interact with a web page using developer tools.  Indeed, an HTML web page is structured by **tags** making element search simple: 
+I choose to use **BeautifulSoup** library because it's an easy one for beginners (for other libraries, see Selenium, lxml, Scrapy..). BeautifulSoup is a Python library for parsing structured data (```soup = BeautifulSoup(page.content, "html.parser")```). It allows you to interact with HTML in a similar way to how you interact with a web page using developer tools.  Indeed, an HTML web page is structured by **tags** making element search simple: 
     - find elements by class name: ```element1 = soup.find_all("<tag>", class_="<class>")```
     - find elements by id: ```element2 = soup.find_all("<tag>", id_="<id>")```
     - find elements by text content: ```element3 = soup.find_all("<tag>", string="<string>")```

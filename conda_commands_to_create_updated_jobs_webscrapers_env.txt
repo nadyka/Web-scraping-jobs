@@ -1,0 +1,15 @@
+# conda command history extract manually from the history file located at c:\programdata\anaconda3\env\webscrapers\conda-meta
+
+create -n webscrapers -c conda-forge python beautifulsoup4 requests selenium pandas requests geopy bs4 flask sqlalchemy iso3166 Flask-SQLAlchemy Flask-Migrate Werkzeug 
+
+conda install -c conda-forge google-api-python-client 
+
+conda install -c pytorch pytorch torchvision torchaudio 
+
+# To update the package named "conda" in the CURRENTLY ACTIVATED conda environment.  
+# In this case, the environment is called "webscrapers.  Use this command: 
+
+conda update --channel conda-forge conda --name webscrapers
+
+# To update the "conda" package in the "base" conda environment:
+conda update --name base --channel conda-forge conda 
