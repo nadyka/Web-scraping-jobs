@@ -24,8 +24,56 @@ Download the packages:
 
 (base) C:\Users\Nadia Stoyanova>conda activate webscrapers
 
-## Create Conda Virtual Environment:
-(webscrapers) C:\Users\Nadia Stoyanova> conda install -c conda-forge pandas requests geopy bs4 flask sqlalchemy 
+## Create Conda Virtual Environment:  
+### (see below or file named "conda_commands_to_create_updated_jobs_webscrapers_env.txt")
+
+    # conda command history extract manually from the history file located at c:\programdata\anaconda3\env\webscrapers\conda-meta
+
+    create -n webscrapers -c conda-forge python beautifulsoup4 requests selenium pandas requests geopy bs4 flask sqlalchemy iso3166 Flask-SQLAlchemy Flask-Migrate Werkzeug 
+
+    conda install -c conda-forge google-api-python-client 
+
+    conda install -c pytorch pytorch torchvision torchaudio 
+
+    # To update the package named "conda" in the CURRENTLY ACTIVATED conda environment.  
+    # In this case, the environment is called "webscrapers.  Use this command: 
+
+    conda update --channel conda-forge conda --name webscrapers
+
+    # To update the "conda" package in the "base" conda environment:
+    conda update --name base --channel conda-forge conda 
+
+
+TODO: FUTURE - to add and use Pytorch for machine learning (features to be added)
+  You can install PyTorch using pip or conda. Here's how you can do it:
+
+    Using pip: pip install torch torchvision torchaudio
+
+    Using conda: conda install pytorch torchvision torchaudio -c pytorch
+
+    These commands will install PyTorch along with torchvision (a package with popular datasets, model architectures, and common image transformations for computer vision) and torchaudio (similar to torchvision, but for audio).
+
+  Remember to activate your virtual environment before installing, if you're using one. 
+  Also, ensure that your Python and pip versions are up-to-date.
+  # All requested packages already installed.
+
+  (webscrapers) C:\Users\Nadia Stoyanova>conda install pytorch torchvision torchaudio -c pytorch
+  Channels:
+  - pytorch
+  - conda-forge
+  - defaults
+  Platform: win-64
+  Collecting package metadata (repodata.json): done
+  Solving environment: done
+
+  ## Package Plan ##
+
+    environment location: C:\ProgramData\Anaconda3\envs\webscrapers
+
+    added / updated specs:
+      - pytorch
+      - torchaudio
+      - torchvision
 
 # PROBLEMS SOLVED:
 TODO: DONE:  
@@ -51,34 +99,3 @@ TODO: DONE:
     ```conda install -c conda-forge beautifulsoup4```
 
     This command tells conda to install the beautifulsoup4 package from the conda-forge channel.
-
-TODO: FUTURE
-You can install PyTorch using pip or conda. Here's how you can do it:
-
-  Using pip: pip install torch torchvision torchaudio
-
-  Using conda: conda install pytorch torchvision torchaudio -c pytorch
-
-  These commands will install PyTorch along with torchvision (a package with popular datasets, model architectures, and common image transformations for computer vision) and torchaudio (similar to torchvision, but for audio).
-
-Remember to activate your virtual environment before installing, if you're using one. 
-Also, ensure that your Python and pip versions are up-to-date.
-# All requested packages already installed.
-
-(webscrapers) C:\Users\Nadia Stoyanova>conda install pytorch torchvision torchaudio -c pytorch
-Channels:
- - pytorch
- - conda-forge
- - defaults
-Platform: win-64
-Collecting package metadata (repodata.json): done
-Solving environment: done
-
-## Package Plan ##
-
-  environment location: C:\ProgramData\Anaconda3\envs\webscrapers
-
-  added / updated specs:
-    - pytorch
-    - torchaudio
-    - torchvision
